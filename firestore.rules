@@ -1,0 +1,9 @@
+match /ai_conversations/{conversationId} {
+  allow read, write: if request.auth != null && 
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+}
+
+match /ai_pull_requests/{prId} {
+  allow read, write: if request.auth != null && 
+    get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+}
